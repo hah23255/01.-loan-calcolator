@@ -1,0 +1,4 @@
+export const createEl=(tag,attrs={},children=[])=>{const el=document.createElement(tag);Object.entries(attrs).forEach(([key,val])=>{if(val===undefined||val===null)return;if(key.startsWith("on")&&typeof val==="function"){el.addEventListener(key.slice(2).toLowerCase(),val);}else if(key==="className"){el.className=val;}else{el.setAttribute(key,val);}});[].concat(children).forEach(child=>{if(child===undefined||child===null)return;el.appendChild(typeof child==='string'?document.createTextNode(child):child);});return el;};
+export const clearEl=el=>{while(el.firstChild)el.removeChild(el.firstChild);};
+export const formatCurrency=value=>new Intl.NumberFormat('bg-BG',{style:'currency',currency:'BGN',maximumFractionDigits:2}).format(value);
+export const formatNumber=value=>new Intl.NumberFormat('bg-BG',{maximumFractionDigits:2}).format(value);
